@@ -30,9 +30,9 @@ flowchart LR
 ### Phase 2: Local Brain Fine-Tuning & Voice State Tuning (In Progress 🚧)
 * **Milestone**: Optimize local inference and hands-free conversational loops.
 * **Deliverables**:
-  - Quantized Qwen 14B QLoRA adapter fine-tuning for desktop capability routing.
+  - Qwen 14B QLoRA adapter fine-tuning executed on cloud GPUs (Google Colab T4/A100).
+  - 4-bit quantized deployment with attention layers offloaded to local NVIDIA GeForce RTX 5050 Laptop GPU.
   - Real-time continuous listening state machine with full-duplex interruption.
-  - Offloading attention layers to local NVIDIA GeForce RTX 5050 Laptop GPU.
   - Benchmarking sub-second tool dispatch latency.
 
 ### Phase 3: Autonomous Multi-App Desktop Operability (Planned ⏳)

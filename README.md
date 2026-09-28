@@ -156,7 +156,7 @@ VERIFICATION SUMMARY:
 | **AST Code Indexer & Patch Engine** | 🟢 **Operational** *(Private Core)* | AST syntax extraction, unified diffs, and surgical line replacements verified. |
 | **Automated Test Suite** | 🟢 **726 Passed / 2 Skipped / 0 Failed** | 100% green test execution run on Python 3.12 via Pytest (in 16.54s). |
 | **Database Migrations & Relational Schema** | 🟢 **Operational** *(Private Core)* | Alembic migration chains for user profiles, audit logs, and session management. |
-| **Local 14B Inference Setup** | 🟡 **In Progress** | Qwen 14B QLoRA offloading targeted for local NVIDIA RTX 5050 Laptop GPU. |
+| **Hybrid 14B Model Strategy** | 🟡 **In Progress** | Cloud fine-tuning (Google Colab T4/A100) + local 4-bit quantized inference on RTX 5050 GPU. |
 | **End-to-End Dynamic Voice Loop** | 🟡 **In Progress** | Audio ingestion & acoustic validation built; continuous live conversational flow tuning underway. |
 | **Autonomous Multi-Step Desktop Automation** | 🟡 **In Progress** | Core atomic tools built; multi-turn self-correcting agent loop in active development. |
 | **Robotics & Physical Embodiment** | 🔵 **Planned (Future)** | ROS 2 integration, spatial perception, and robotic actuation. |
@@ -189,13 +189,15 @@ Explore the complete architectural specifications and walkthrough traces:
 
 ---
 
-## 💻 Hardware Environment
+## 💻 Hardware Environment & Model Deployment
 
 * **Development Workstation**: Lenovo LOQ Laptop (Purchased July 2026)
 * **Processor**: Intel Core i7 14th Gen (14700HX) — 20 cores, 28 threads
 * **Graphics Processor**: **NVIDIA GeForce RTX 5050 Laptop GPU**
 * **Memory & Storage**: 16 GB DDR5 RAM + 1 TB NVMe PCIe Gen4 SSD
-* **Local Inference Strategy**: Local-first development philosophy targeting 4-bit quantized Qwen 14B models utilizing GPU VRAM offloading for private local reasoning.
+* **Model Training vs. Inference Strategy**:
+  - **Training (Cloud GPUs)**: Fine-tuning Qwen 14B via QLoRA is performed remotely on **Google Colab (T4/A100 GPUs)** using `train_nova_qlora_14b.py`, eliminating compute stress and heat on the local workstation.
+  - **Inference (Local Deployment)**: The fine-tuned weights are converted into 4-bit quantized GGUF format and deployed locally, offloading critical transformer layers to the **NVIDIA GeForce RTX 5050 Laptop GPU** for sub-second, 100% private execution with zero subscription costs.
 
 ---
 
